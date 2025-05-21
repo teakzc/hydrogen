@@ -1,7 +1,7 @@
 local RS = game:GetService("RunService")
 
 if RS:IsServer() then
-    return require(script.euphoriaserver)
+    return require(script.hydrogenserver)
 else
-    return require(script.euphoriaclient)
+    return require(script.hydrogenclient)
 end

@@ -1,5 +1,5 @@
-local euphoria = {}
-euphoria.Services = {}
+local hydrogen = {}
+hydrogen.Services = {}
 
 export type SERVICE_TYPE = {
     Name: string,
@@ -7,14 +7,14 @@ export type SERVICE_TYPE = {
     [any] : any,
 }
 
-function euphoria:CreateService(Data: SERVICE_TYPE)
+function hydrogen:CreateService(Data: SERVICE_TYPE)
     assert(type(Data) == "table", "Where is the table bro.")
-    euphoria.Services[Data.Name] = Data
+    hydrogen.Services[Data.Name] = Data
     return Data
 end
 
-function euphoria:Start()
-    for i, Service in euphoria.Services do
+function hydrogen:Start()
+    for i, Service in hydrogen.Services do
         local t = os.clock()
         
         if type(Service["Initialize"]) == "function" then
@@ -25,4 +25,4 @@ function euphoria:Start()
     end
 end
 
-return euphoria
+return hydrogen

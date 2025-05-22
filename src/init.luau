@@ -57,7 +57,7 @@ function hydrogen:LoadServices()
 	for _, Service in self.LoadingServices:GetDescendants() do
 		if Service:IsA("ModuleScript") then
             task.spawn(function()
-                self:LoadServices(Service)
+                self:LoadService(Service)
             end)
         end
 	end
@@ -86,6 +86,7 @@ end
 function hydrogen:GetService(Service: string)
     self:HasLoaded()
     local LoadedService = self.Services[Service]
+    assert(LoadedService, Service .." is not registered!")
     if RS:IsServer() then
         return LoadedService.Server
     else

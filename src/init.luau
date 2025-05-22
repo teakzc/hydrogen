@@ -1,4 +1,4 @@
-local ServerScriptService = game:GetService("ServerScriptService")
+
 local RS = game:GetService("RunService")
 
 local hydrogen = {}
@@ -75,7 +75,7 @@ function hydrogen:LoadServices()
     self.Loaded = true
 end
 
-function hydrogen:HasLoaded(): boolean
+function hydrogen:HasLoaded()
 	repeat
 		task.wait()
 	until self.Loaded == true

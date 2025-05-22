@@ -7,15 +7,18 @@ hydrogen.__index = hydrogen
 type Array<T> = {T}
 type Dictionary = {[string]: any}
 
-export type FRAMEWORK_TYPE = {
+export type self = {
     LoadingServices: Instance,
     Services: Dictionary, --how do i make it type check a array of required modules like {require(this), require(that)}
     ServicesList: Array<string>,
+    ServiceType: any,
     StartTime: number,
     Loaded: boolean
 }
 
-function hydrogen.new(Services: Instance): FRAMEWORK_TYPE
+export type hydrogen = typeof(setmetatable({} :: self, hydrogen))
+
+function hydrogen.new(Services: Instance): hydrogen
 	local self = setmetatable({}, hydrogen)
 	self.LoadingServices = Services
 	self.StartTime = os.clock()
@@ -35,6 +38,7 @@ function hydrogen:LoadService(Service: ModuleScript)
         end
 
         self.Services[Service.Name] = _Service
+        self.ServiceType[Service.Name] = _Service.typecast
         table.insert(self.ServicesList, Service.Name)
 	end)
 
@@ -82,10 +86,12 @@ function hydrogen:GetServices(): Array<string>
 end
 
 function hydrogen:GetService(Service: string)
+    self:HasLoaded()
+    local LoadedService = self.Services[Service]
     if RS:IsServer() then
-        return self.Services[Service].Server
+        return LoadedService.ClientServer
     else
-        return self.Services[Service].Client
+        return LoadedService.Client
     end
 end
 

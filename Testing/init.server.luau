@@ -3,18 +3,7 @@ local Players = game:GetService("Players")
 
 local hydrogen = require(RpS.hydrogen)
 
-hydrogen:AddService(script)
-hydrogen:Start()
+local Framework = hydrogen.new(script)
+Framework:LoadServices()
 
-local IDKSERVICE = hydrogen:GetService("TestService")
-
-print("HI2")
-
-Players.PlayerAdded:Connect(function(Client)
-    while true do
-        print("HI")
-        task.wait(1)
-        IDKSERVICE.Server:SetPos(Client)
-    end
-end)
-
+local Test = Framework:GetService("Test")

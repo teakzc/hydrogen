@@ -3,8 +3,15 @@ local RpS = game:GetService("ReplicatedStorage")
 
 local hydrogen = require(RpS.hydrogen)
 
-local Server = {}
-local Client = {}
+local Test = {}
+local Server = Test.Server
+local Client = Test.Client
+
+export type typecast = {
+    SetPos: (Client: Player) -> (),
+    GetStorage: (Client: Player) -> Vector3,
+    CharacterStuff: (Client: Player) -> Vector3,
+}
 
 function Server:SetPos(Client: Player)
     local Character = Client.Character
@@ -16,16 +23,9 @@ function Server:GetStorage(Client: Player): Vector3
     return assert(self.Storage[Client], "This client does not have any position stored, ".. Client)
 end
 
-function Client:CharacterStuff(Client: Player)
+function Client:CharacterStuff(Client: Player): Vector3
     local Character = Client.Character
     return Character.PrimaryPart.Position
 end
 
-local TestService: hydrogen.SERVICE_TYPE = {
-    Name = "TestService",
-    Server = Server,
-    Client = Client,
-    Shared = {}
-}
-
-return hydrogen:CreateService(TestService)
+return Test

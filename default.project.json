@@ -13,6 +13,14 @@
 			"hydrogen": {
 				"$path": "src"
 			}
-    	}
+    	},
+
+		"ServerScriptService": {
+			"$ignoreUnknownInstances": true,
+
+			"Testing": {
+				"$path": "Testing"
+			}
+		}
 	}
 }

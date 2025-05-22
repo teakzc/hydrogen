@@ -74,12 +74,17 @@ function hydrogen:LoadServices()
 end
 
 function hydrogen:HasLoaded()
-	repeat
-		task.wait()
-	until self.Loaded == true
+    if RS:IsClient() then
+        
+    else
+        repeat
+		    task.wait()
+	    until self.Loaded == true
+    end
 end
 
 function hydrogen:GetServices(): Array<string>
+    self:HasLoaded()
     return self.ServicesList
 end
 

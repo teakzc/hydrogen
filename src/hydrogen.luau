@@ -1,45 +1,61 @@
+local ServerScriptService = game:GetService("ServerScriptService")
+local RS = game:GetService("RunService")
+
 local hydrogen = {}
 hydrogen.__index = hydrogen
 
+type Array<T> = {T}
+type Dictionary = {[string]: any}
+
 export type FRAMEWORK_TYPE = {
-    Modules: Instance,
+    LoadingServices: Instance,
+    Services: Dictionary, --how do i make it type check a array of required modules like {require(this), require(that)}
+    ServicesList: Array<string>,
     StartTime: number,
     Loaded: boolean
 }
 
-function hydrogen.new(Modules: Instance): FRAMEWORK_TYPE
+function hydrogen.new(Services: Instance): FRAMEWORK_TYPE
 	local self = setmetatable({}, hydrogen)
-	self.Modules = Modules :: Instance
-	self.StartTime = os.clock() :: number
-    self.Loaded = false :: boolean
+	self.LoadingServices = Services
+	self.StartTime = os.clock()
+    self.Loaded = false
+    self.Services = {}
+    self.ServicesList = {}
 	return self
 end
 
-function hydrogen:LoadModule(Module: ModuleScript)
+function hydrogen:LoadService(Service: ModuleScript)
 	local StartTime = os.clock()
 
 	local success, err = pcall(function()
-		require(Module)
+		local _Service = require(Service)
+        if _Service["Initialize"] then
+            _Service["Initialize"]()
+        end
+
+        self.Services[Service.Name] = _Service
+        table.insert(self.ServicesList, Service.Name)
 	end)
 
 	if success then
 		local LoadTime = math.round((os.clock() - StartTime) * 10)
 		print(
             string.format(
-                Module.Name.." took [%s] ms to load!",
+                Service.Name.." took [%s] ms to load!",
                 LoadTime
             )
         )
 	else
-		warn(Module.Name .. "has errored! " .. tostring(err))
+		warn(Service.Name .. "has errored! " .. tostring(err))
 	end
 end
 
-function hydrogen:LoadModules()
-	for _, Module in self.Modules:GetDescendants() do
-		if Module:IsA("ModuleScript") then
+function hydrogen:LoadServices()
+	for _, Service in self.LoadingServices:GetDescendants() do
+		if Service:IsA("ModuleScript") then
             task.spawn(function()
-                self:LoadModule(Module)
+                self:LoadServices(Service)
             end)
         end
 	end
@@ -59,6 +75,18 @@ function hydrogen:HasLoaded(): boolean
 	repeat
 		task.wait()
 	until self.Loaded == true
+end
+
+function hydrogen:GetServices(): Array<string>
+    return self.ServicesList
+end
+
+function hydrogen:GetService(Service: string)
+    if RS:IsServer() then
+        return self.Services[Service].Server
+    else
+        return self.Services[Service].Client
+    end
 end
 
 return hydrogen

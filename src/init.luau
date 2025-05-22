@@ -11,7 +11,6 @@ export type self = {
     LoadingServices: Instance,
     Services: Dictionary, --how do i make it type check a array of required modules like {require(this), require(that)}
     ServicesList: Array<string>,
-    ServiceType: any,
     StartTime: number,
     Loaded: boolean
 }
@@ -38,7 +37,6 @@ function hydrogen:LoadService(Service: ModuleScript)
         end
 
         self.Services[Service.Name] = _Service
-        self.ServiceType[Service.Name] = _Service.typecast
         table.insert(self.ServicesList, Service.Name)
 	end)
 
@@ -89,7 +87,7 @@ function hydrogen:GetService(Service: string)
     self:HasLoaded()
     local LoadedService = self.Services[Service]
     if RS:IsServer() then
-        return LoadedService.ClientServer
+        return LoadedService.Server
     else
         return LoadedService.Client
     end

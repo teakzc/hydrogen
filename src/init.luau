@@ -17,14 +17,12 @@ export type self = {
 
 export type hydrogen = typeof(setmetatable({} :: self, hydrogen))
 
-function hydrogen.new(Services: Instance): hydrogen
-	local self = setmetatable({}, hydrogen)
+function hydrogen:AddServices(Services: Instance)
 	self.LoadingServices = Services
 	self.StartTime = os.clock()
     self.Loaded = false
     self.Services = {}
     self.ServicesList = {}
-	return self
 end
 
 function hydrogen:LoadService(Service: ModuleScript)
@@ -54,11 +52,11 @@ function hydrogen:LoadService(Service: ModuleScript)
 end
 
 function hydrogen:LoadServices()
+    if self.Loaded then return end
+
 	for _, Service in self.LoadingServices:GetDescendants() do
 		if Service:IsA("ModuleScript") then
-            task.spawn(function()
-                self:LoadService(Service)
-            end)
+            self:LoadService(Service)
         end
 	end
 
@@ -70,6 +68,8 @@ function hydrogen:LoadServices()
         )
     )
 
+
+    table.freeze(self.Services)
     self.Loaded = true
 end
 

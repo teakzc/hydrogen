@@ -2,6 +2,11 @@
 	"name": "hydrogen",
 	"tree": {
 		"$className": "DataModel",
+		"$ignoreUnknownInstances": true,
+
+		"Workspace": {
+			"$ignoreUnknownInstances": true
+		},
 		
 		"ReplicatedStorage": {
 			"$ignoreUnknownInstances": true,
@@ -20,6 +25,16 @@
 
 			"Testing": {
 				"$path": "Testing"
+			}
+		},
+
+		"StarterPlayer": {
+			"$ignoreUnknownInstances": true,
+
+			"StarterPlayerScripts": {
+				"Client": {
+					"$path": "client"
+				}
 			}
 		}
 	}

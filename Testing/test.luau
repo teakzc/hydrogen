@@ -17,18 +17,20 @@ function ModuleServer:SetPos(Client: Player)
     local Character = Client.Character
     if Character ~= nil then
         local Pos = Character.PrimaryPart.Position
-        print(self)
         self.Storage[Client] = Pos
     end
 end
 
 function ModuleServer:GetStorage(Client: Player): Vector3
-    return assert(self.Storage[Client], "This client does not have any position stored, ".. Client.Name)
+    if self.Storage[Client] ~= nil then
+        return self.Storage[Client]
+    else
+        return Vector3.zero
+    end
 end
 
 function ModuleClient:CharacterStuff(Client: Player): Vector3
-    local Character = Client.Character
-    return Character.PrimaryPart.Position
+    return self.Storage[Client]
 end
 
 function Test:Initialize()

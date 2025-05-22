@@ -25,7 +25,7 @@ local TestService: hydrogen.SERVICE_TYPE = {
     Name = "TestService",
     Server = Server,
     Client = Client,
-    Storage = {}
+    Shared = {}
 }
 
 return hydrogen:CreateService(TestService)

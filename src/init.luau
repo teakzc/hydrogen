@@ -1,6 +1,9 @@
 
 local RS = game:GetService("RunService")
 
+--local helium = require(PATH.TO.helium)
+local helium
+
 local hydrogen = {}
 hydrogen.__index = hydrogen
 
@@ -11,6 +14,7 @@ export type self = {
     LoadingServices: Instance,
     Services: Dictionary, --how do i make it type check a array of required modules like {require(this), require(that)}
     ServicesList: Array<string>,
+    HeliumList: Array<any>,
     StartTime: number,
     Loaded: boolean
 }
@@ -21,6 +25,7 @@ function hydrogen:AddServices(Services: Instance)
 	self.LoadingServices = Services
 	self.StartTime = os.clock()
     self.Loaded = false
+    self.HeliumList = {}
     self.Services = {}
     self.ServicesList = {}
 end
@@ -34,7 +39,13 @@ function hydrogen:LoadService(Service: ModuleScript)
             _Service["Initialize"]()
         end
 
+        local HeliumBindable = helium.new(Service.Name, "string")
+        HeliumBindable:BindFunction(function(Name: string, Client, Data)
+            return _Service.Client[Name](Client, Data)
+        end)
+
         self.Services[Service.Name] = _Service
+        self.HeliumList[Service.Name] = HeliumBindable
         table.insert(self.ServicesList, Service.Name)
 	end)
 
@@ -74,13 +85,9 @@ function hydrogen:LoadServices()
 end
 
 function hydrogen:HasLoaded()
-    if RS:IsClient() then
-        
-    else
-        repeat
-		    task.wait()
-	    until self.Loaded == true
-    end
+    repeat
+        task.wait()
+    until self.Loaded == true
 end
 
 function hydrogen:GetServices(): Array<string>
@@ -89,12 +96,16 @@ function hydrogen:GetServices(): Array<string>
 end
 
 function hydrogen:GetService(Service: string)
-    self:HasLoaded()
     local LoadedService = self.Services[Service]
-    assert(LoadedService, Service .." is not registered!")
     if RS:IsServer() then
+        self:HasLoaded()
+        
+        assert(LoadedService, Service .." is not registered!")
         return LoadedService.Server
     else
+        return self.HeliumBindable
+
+
         return LoadedService.Client
     end
 end

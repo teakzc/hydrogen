@@ -14,7 +14,7 @@ export type self = {
     LoadingServices: Instance,
     Services: Dictionary, --how do i make it type check a array of required modules like {require(this), require(that)}
     ServicesList: Array<string>,
-    HeliumList: Array<any>,
+    HeliumBindables: Array<any>,
     StartTime: number,
     Loaded: boolean
 }
@@ -25,7 +25,7 @@ function hydrogen:AddServices(Services: Instance)
 	self.LoadingServices = Services
 	self.StartTime = os.clock()
     self.Loaded = false
-    self.HeliumList = {}
+    self.HeliumBindables = {}
     self.Services = {}
     self.ServicesList = {}
 end
@@ -39,13 +39,14 @@ function hydrogen:LoadService(Service: ModuleScript)
             _Service["Initialize"]()
         end
 
+        --Server
         local HeliumBindable = helium.new(Service.Name, "string")
         HeliumBindable:BindFunction(function(Name: string, Client, Data)
             return _Service.Client[Name](Client, Data)
         end)
 
         self.Services[Service.Name] = _Service
-        self.HeliumList[Service.Name] = HeliumBindable
+        self.HeliumBindables[Service.Name] = HeliumBindable
         table.insert(self.ServicesList, Service.Name)
 	end)
 
@@ -103,10 +104,7 @@ function hydrogen:GetService(Service: string)
         assert(LoadedService, Service .." is not registered!")
         return LoadedService.Server
     else
-        return self.HeliumBindable
-
-
-        return LoadedService.Client
+        return 
     end
 end
 

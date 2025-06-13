@@ -11,10 +11,6 @@
 		"ReplicatedStorage": {
 			"$ignoreUnknownInstances": true,
 
-			"Packages": {
-				"$path": "Packages"
-			},
-
 			"hydrogen": {
 				"$path": "src"
 			}

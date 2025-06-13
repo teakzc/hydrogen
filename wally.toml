@@ -5,6 +5,3 @@ registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 
 [dependencies]
-bytenet = "ffrostflame/bytenet@0.4.6"
-lemonsignal = "data-oriented-house/lemonsignal@1.10.0"
-comm = "sleitnick/comm@1.0.1"

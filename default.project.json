@@ -21,21 +21,11 @@
     	},
 
 		"ServerScriptService": {
-			"$ignoreUnknownInstances": true,
-
-			"Testing": {
-				"$path": "Testing"
-			}
+			"$ignoreUnknownInstances": true
 		},
 
 		"StarterPlayer": {
-			"$ignoreUnknownInstances": true,
-
-			"StarterPlayerScripts": {
-				"Client": {
-					"$path": "client"
-				}
-			}
+			"$ignoreUnknownInstances": true
 		}
 	}
 }

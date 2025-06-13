@@ -1,12 +1,5 @@
 
-local RS = game:GetService("RunService")
-
---local helium = require(PATH.TO.helium)
-local helium
-
-local hydrogen = {
-    HeliumBindable = helium.new("Hydrogen")
-}
+local hydrogen = {}
 hydrogen.__index = hydrogen
 
 type Array<T> = {T}
@@ -14,7 +7,7 @@ type Dictionary = {[string]: any}
 
 export type self = {
     LoadingServices: Instance,
-    Services: Dictionary, --how do i make it type check a array of required modules like {require(this), require(that)}
+    Services: Dictionary,
     ServicesList: Array<string>,
     StartTime: number,
     Loaded: boolean
@@ -38,9 +31,6 @@ function hydrogen:LoadService(Service: ModuleScript)
         if _Service["Initialize"] then
             _Service["Initialize"]()
         end
-
-        --Server
-        self.HeliumBindable:BindFunction(Service.Name, _Service)
 
         self.Services[Service.Name] = _Service
         table.insert(self.ServicesList, Service.Name)
@@ -76,7 +66,6 @@ function hydrogen:LoadServices()
         )
     )
 
-
     table.freeze(self.Services)
     self.Loaded = true
 end
@@ -94,15 +83,11 @@ end
 
 function hydrogen:GetService(Service: string)
     local LoadedService = self.Services[Service]
-    if RS:IsServer() then
-        self:HasLoaded()
-        
-        assert(LoadedService, Service .." is not registered!")
-        return LoadedService.Server
-    else
 
-        return self.HeliumBindable:Build(Service)
-    end
+    self:HasLoaded()
+    
+    assert(LoadedService, Service .." is not registered!")
+    return LoadedService.Server
 end
 
 return hydrogen

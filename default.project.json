@@ -1,27 +1,6 @@
 {
-	"name": "hydrogen",
-	"tree": {
-		"$className": "DataModel",
-		"$ignoreUnknownInstances": true,
-
-		"Workspace": {
-			"$ignoreUnknownInstances": true
-		},
-		
-		"ReplicatedStorage": {
-			"$ignoreUnknownInstances": true,
-
-			"hydrogen": {
-				"$path": "src"
-			}
-    	},
-
-		"ServerScriptService": {
-			"$ignoreUnknownInstances": true
-		},
-
-		"StarterPlayer": {
-			"$ignoreUnknownInstances": true
-		}
-	}
+  "name": "hydrogen",
+  "tree": {
+    "$path": "src/hydrogen.lua"
+  }
 }

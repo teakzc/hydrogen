@@ -1,10 +1,12 @@
 <div align="center">
   <img src="./images/Hydrogen.png" class="center">
 </div>
-Light-weight framework
+
+Elegantly simple; like my smooth brain.
 
 # hydrogen
 
-A module loader that I made to use in my games!
+Light-weight module loader with initialization function to ensure all modules are loaded when required.
 
+Includes loading time for each module and total [ms] taken to load framework.
 

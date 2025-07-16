@@ -3,11 +3,11 @@ local hydrogen = {}
 hydrogen.__index = hydrogen
 
 type Array<T> = {T}
-type Dictionary = {[string]: any}
+type Dictionary<T> = {[string]: T}
 
 export type self = {
 	LoadingServices: Instance,
-	Services: Dictionary,
+	Services: Dictionary<any>,
 	ServicesList: Array<string>,
 	StartTime: number,
 	Loaded: boolean

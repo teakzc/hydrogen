@@ -1,19 +1,16 @@
 
 local hydrogen = {}
-hydrogen.__index = hydrogen
 
 type Array<T> = {T}
 type Dictionary<T> = {[string]: T}
 
-export type self = {
+export type hydrogen = {
 	LoadingServices: Instance,
 	Services: Dictionary<any>,
 	ServicesList: Array<string>,
 	StartTime: number,
 	Loaded: boolean
 }
-
-export type hydrogen = typeof(setmetatable({} :: self, hydrogen))
 
 function hydrogen:AddServices(Services: Instance)
 	self.LoadingServices = Services

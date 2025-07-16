@@ -18,6 +18,3 @@ hydrogen = "teakzc/hydrogen@0.1.1"
 # Apologies
 
 This is my first package project I have ever made to use for my games. I am incredibly sorry if this is not optimized nor is it good.
-
-# Known issues
-- Framework loading time is 0ms always

@@ -1,9 +1,13 @@
 name = "teakzc/hydrogen"
-version = "0.2.0"
+version = "0.4.0"
 description = "Light-weight module initializer."
 authors = ["teakzc"]
 repository = "https://github.com/teakzc/hydrogen"
 license = "MIT"
+includes = ["README.md", "LICENSE", "pesde.toml"]
+
+[indices]
+default = "https://github.com/pesde-pkg/index"
 
 [target]
 environment = "roblox"

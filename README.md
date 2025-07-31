@@ -2,19 +2,19 @@
   <img src="./images/Hydrogen.png" class="center">
 </div>
 
-Elegantly simple; like my smooth brain.
+- Light-weight module initializer.
+- Includes loading time for each module and total [ms] taken to load.
+- Type-safe API
 
-# hydrogen
+#
 
-Light-weight module loader with initialization function to ensure all modules are loaded when required.
+## 📦 Installation
 
-Includes loading time for each module and total [ms] taken to load framework.
-
-# Installation via wally
+[Wally](https://wally.run/):
+```bash
+hydrogen = "teakzc/hydrogen"
 ```
-hydrogen = "teakzc/hydrogen@0.1.1"
+[pesde](https://pesde.dev/):
+```bash
+pesde add wally#teakzc/hydrogen
 ```
-
-# Apologies
-
-This is my first package project I have ever made to use for my games. I am incredibly sorry if this is not optimized nor is it good.

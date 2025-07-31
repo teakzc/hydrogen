@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./images/hydrogen.png" class="center"></img>
+  <img src="./images/hydrogenicon.png" class="center"></img>
 </div>
 
 - Light-weight module initializer.

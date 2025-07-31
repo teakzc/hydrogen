@@ -1,8 +1,10 @@
 <div align="center">
-  <img src="./images/hydrogenicon.png" alt="Hydrogen Logo" width="512" height="512"/>
+  <img src="./images/hydrogenicon.png" alt="Hydrogen Logo" width="256" height="256"/>
   <h1><b>Hydrogen</b></h1>
 
-  ![Static Badge](https://img.shields.io/badge/LICENSE-MIT-green?link=https%3A%2F%2Fgithub.com%2Fteakzc%2Fhydrogen%2Fblob%2Fmain%2FLICENSE)
+  <img alt="Static Badge" src="https://img.shields.io/badge/LICENSE-MIT-green?link=https%3A%2F%2Fgithub.com%2Fteakzc%2Fhydrogen%2Fblob%2Fmain%2FLICENSE">
+  
+
 
 </div>
 

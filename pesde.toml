@@ -1,0 +1,18 @@
+name = "teakzc/hydrogen"
+version = "0.2.0"
+description = "Light-weight module initializer."
+authors = ["teakzc"]
+repository = "https://github.com/teakzc/hydrogen"
+license = "MIT"
+include = ["src/**", "README.md", "LICENSE"]
+
+[indices]
+default = "https://github.com/pesde-pkg/index"
+
+[target]
+environment = "roblox"
+lib = "src/init.luau"
+build_files = ["src"]
+
+[dependencies]
+hydrogen = { name = "teakzc/hydrogen", version = "^0.2.0" }

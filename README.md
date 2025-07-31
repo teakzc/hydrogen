@@ -1,12 +1,10 @@
 <div align="center">
-  <img src="./images/Hydrogen.png" class="center">
+  <img src="./images/hydrogen.png" class="center"></img>
 </div>
 
 - Light-weight module initializer.
 - Includes loading time for each module and total [ms] taken to load.
 - Type-safe API
-
-#
 
 ## 📦 Installation
 

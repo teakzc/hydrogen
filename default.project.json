@@ -1,6 +1,6 @@
 {
   "name": "hydrogen",
   "tree": {
-    "$path": "src/hydrogen.lua"
+    "$path": "src"
   }
 }

@@ -4,10 +4,3 @@ format = 2
 name = "teakzc/hydrogen"
 version = "0.2.0"
 target = "roblox"
-
-[graph."teakzc/hydrogen@0.2.0 roblox"]
-direct = ["hydrogen", { name = "teakzc/hydrogen", version = "^0.2.0", index = "default" }, "standard"]
-
-[graph."teakzc/hydrogen@0.2.0 roblox".pkg_ref]
-ref_ty = "pesde"
-index_url = "https://github.com/pesde-pkg/index"

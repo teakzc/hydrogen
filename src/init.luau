@@ -16,7 +16,7 @@ export type Methods = {
 --[=[
 	@class hydrogen
 ]=]
-local hydrogen = {} :: Methods
+local hydrogen = {} :: Methods & hydrogen
 
 --[=[
 	@prop LoadingModules Instance

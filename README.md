@@ -2,7 +2,7 @@
   <img src="./images/hydrogenicon.png" alt="Hydrogen Logo" width="256" height="256"/>
 
   <h1 align="center"><b>hydrogen</b></h1>
-  <p align="center">
+  <p align="center"></p>
   
   Module Initializer
   
@@ -24,5 +24,5 @@ hydrogen = "teakzc/hydrogen"
 ```
 [pesde](https://pesde.dev/):
 ```bash
-pesde add wally#teakzc/hydrogen
+pesde add teakzc/hydrogen
 ```

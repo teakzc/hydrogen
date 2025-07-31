@@ -1,6 +1,16 @@
 <div align="center">
-  <img src="./images/hydrogenicon.png" class="center"></img>
+  <img src="./images/hydrogenicon.png" alt="Hydrogen Logo" width="256" height="256"/>
+
+  <h1 align="center"><b>hydrogen</b></h1>
+  <p align="center">
+  
+  Module Initializer
+  
+  [![License](https://img.shields.io/github/license/teakzc/hydrogen?style=for-the-badge)](https://github.com/teakzc/hydrogen/blob/main/LICENSE)
+  [![Documentation](https://img.shields.io/badge/Documentation-Website-blue?style=for-the-badge)](about:blank)
 </div>
+
+# ⭐ Features
 
 - Light-weight module initializer.
 - Includes loading time for each module and total [ms] taken to load.
